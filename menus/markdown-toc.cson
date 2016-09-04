@@ -28,13 +28,6 @@
           'label': 'Remove TOC'
           'command': 'markdown-toc:delete'
         }
-        {
-          type: 'separator'
-        },
-        {
-          'label': 'Automatically update TOC'
-          'command': 'markdown-toc:automatically-update'
-        }
       ]
     ]
   }
