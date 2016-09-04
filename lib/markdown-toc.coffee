@@ -1,7 +1,6 @@
 Toc = require './Toc'
 
 atom.workspace.observeTextEditors (editor) ->
-
   editor.onDidStopChanging (item) ->
     if atom.config.get('markdown-toc.automatically-update')
       @toc = new Toc(atom.workspace.getActivePaneItem())
@@ -14,7 +13,6 @@ module.exports =
       type: 'boolean'
       default: false
   activate: (state) ->
-    console.log 'activate'
     atom.commands.add 'atom-workspace', 'markdown-toc:create': =>
       @toc = new Toc(atom.workspace.getActivePaneItem())
       @toc.create()
