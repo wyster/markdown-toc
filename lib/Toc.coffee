@@ -38,7 +38,7 @@ class Toc
 
 
   autosave: ->
-    if @.options.updateOnSave is 1 && @_hasToc()
+    if @_hasToc() && @.options.updateOnSave is 1
       @_deleteToc()
       @editor.setTextInBufferRange [[@open,0], [@open,0]], @_createToc()
 
