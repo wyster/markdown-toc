@@ -3,14 +3,6 @@
   "main": "./lib/markdown-toc",
   "version": "0.4.1",
   "description": "Generate TOC (table of contents) of headlines from parsed markdown file",
-  "activationCommands": {
-    "atom-workspace": [
-      "markdown-toc:toggle",
-      "markdown-toc:create",
-      "markdown-toc:update",
-      "markdown-toc:delete"
-    ]
-  },
   "repository": {
     "type": "git",
     "url": "https://github.com/nok/markdown-toc"
