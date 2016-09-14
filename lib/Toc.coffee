@@ -105,8 +105,11 @@ class Toc
   __updateList: () ->
     @___updateLines()
     @list = []
+    isInCodeBlock = false
     for i of @lines
       line = @lines[i]
+      isInCodeBlock = !isInCodeBlock if line.match /^```/
+      continue if isInCodeBlock
       result = line.match /^\#{1,6}/
       if result
         depthFrom = if @options.depthFrom isnt undefined then @options.depthFrom else 1
@@ -122,7 +125,7 @@ class Toc
     list = []
     depthFrom = if @options.depthFrom isnt undefined then @options.depthFrom else 1
     depthTo = if @options.depthTo isnt undefined then @options.depthTo else 6
-    indicesOfDepth = Array.apply(null, new Array(depthTo - depthFrom)).map(Number.prototype.valueOf, 0);
+    indicesOfDepth = Array.apply(null, new Array(depthTo - depthFrom + 1)).map(Number.prototype.valueOf, 0);
     for own i, item of @list
       row = []
       for tab in [depthFrom..item.depth] when tab > depthFrom
