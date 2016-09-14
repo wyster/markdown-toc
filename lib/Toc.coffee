@@ -12,13 +12,6 @@ class Toc
       updateOnSave: 1 # updateOnSave
       orderedList: 0 # orderedList
 
-    at = @
-    @editor.getBuffer().onWillSave () ->
-      if at.options.updateOnSave is 1
-        if at._hasToc()
-          at._deleteToc()
-          at.editor.setTextInBufferRange [[at.open,0], [at.open,0]], at._createToc()
-
 
   # ----------------------------------------------------------------------------
   # main methods (highest logic level)
@@ -45,7 +38,7 @@ class Toc
 
 
   autosave: ->
-    if @_hasToc()
+    if @_hasToc() && @.options.updateOnSave is 1
       @_deleteToc()
       @editor.setTextInBufferRange [[@open,0], [@open,0]], @_createToc()
 

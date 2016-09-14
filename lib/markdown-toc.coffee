@@ -1,14 +1,14 @@
 Toc = require './Toc'
 
 atom.workspace.observeTextEditors (editor) ->
-  @timeout = null
-  editor.onDidStopChanging (item) ->
+  if atom.config.get('markdown-toc.automatically-update')
+    @toc = new Toc(editor)
+    @toc.autosave()
+
+  editor.onDidSave () ->
     if atom.config.get('markdown-toc.automatically-update')
-      clearTimeout @timeout
-      @timeout = setTimeout ->
-        @toc = new Toc(atom.workspace.getActivePaneItem())
-        @toc.autosave()
-      , 1000
+      @toc = new Toc(editor)
+      @toc.autosave()
 
 module.exports =
   config:
